@@ -10,28 +10,28 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.LibraryManagementSystem.service.BookService;
-import com.example.LibraryManagementSystem.entity.Book;
+import com.example.LibraryManagementSystem.entity.Transaction;
+import com.example.LibraryManagementSystem.service.TransactionService;
 
 @RestController
-public class BookController {
+public class TransactionController {
 
 	@Autowired
-	private BookService service;
+	private TransactionService service;
 	
-	@PostMapping("/saveBook")
-	public Book saveBook(@RequestBody Book book) {
-		return service.save(book);
+	@PostMapping("/saveTransaction")
+	public Transaction saveTransaction(@RequestBody Transaction t) {
+		return service.saveTransaction(t);
 	}
 	
-	@GetMapping("/getAllBooks")
-	public List<Book> getAll(){
-		return service.getAll();
+	@GetMapping("/getAllTransactions")
+	public List<Transaction> getAllTransations(){
+		return service.getAllTransactions();
 	}
 	
-	@DeleteMapping("/deleteBook/{id}")
+	@DeleteMapping("/deleteTransaction/{id}")
 	public String deleteById(@PathVariable int id) {
-		 service.deleteById(id);
-		 return "Record Deleted.";
+		service.deleteTransaction(id);
+		return "Transaction Deleted";
 	}
 }
